@@ -13,7 +13,7 @@ namespace quizBackEnd.Controllers
     public class QuestionsController : ControllerBase
     {
          [HttpPost]
-        public void Post([FromBody] Models.Question question)
+        public void Post([FromBody]Models.Question question)
         {
         }
     }
