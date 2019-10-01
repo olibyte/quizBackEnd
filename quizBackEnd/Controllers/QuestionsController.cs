@@ -12,7 +12,15 @@ namespace quizBackEnd.Controllers
     [ApiController]
     public class QuestionsController : ControllerBase
     {
-         [HttpPost]
+        [HttpGet]
+        public ActionResult<IEnumerable<Models.Question>> Get()
+        {
+            return new Models.Question[] {
+                new Models.Question() { Text = "hello" },
+                new Models.Question() { Text = "hi" }
+                };
+        }
+        [HttpPost]
         public void Post([FromBody]Models.Question question)
         {
 
