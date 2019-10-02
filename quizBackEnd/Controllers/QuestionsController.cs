@@ -29,7 +29,7 @@ namespace quizBackEnd.Controllers
         [HttpPost]
         public void Post([FromBody]Models.Question question)
         {
-            context.Questions.Add(new Models.Question() { Text = "test" });
+            context.Questions.Add(question);
             context.SaveChanges();
         }
     }
