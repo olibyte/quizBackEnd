@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace quizBackEnd.Controllers
 {
@@ -28,6 +29,13 @@ namespace quizBackEnd.Controllers
         {
             context.Questions.Add(question);
             context.SaveChanges();
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, [FromBody]Models.Question questionData)
+        {
+            var question = await context.Questions.SingleOrDefaultAsync(q => q.ID == id);
+
+            return Ok(question);
         }
     }
 }
