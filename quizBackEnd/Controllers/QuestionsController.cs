@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace quizBackEnd.Controllers
 {
     //[Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/Questions")]
     [ApiController]
     public class QuestionsController : ControllerBase
     {
@@ -20,9 +20,15 @@ namespace quizBackEnd.Controllers
             this.context = context;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<Models.Question>> Get()
+        public IEnumerable<Models.Question> Get()
         {
             return context.Questions;
+        }
+        
+        [HttpGet("{quizId}")]
+        public IEnumerable<Models.Question> Get([FromRoute] int quizId)
+        {
+            return context.Questions.Where(q => q.QuizId == quizId);
         }
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]Models.Question question)
